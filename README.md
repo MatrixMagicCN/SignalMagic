@@ -1,0 +1,2 @@
+# SignalMagic
+Signal processing software
