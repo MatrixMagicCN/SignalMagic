@@ -9,11 +9,15 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-//    QImage image("SignalMagic_logo.png");
-    QImage image;
-    qDebug() << image.load("test.jpg");
-    qDebug() << image.format();
-    qDebug() << image.size();
+//    QImage image;
+//    qDebug() << image.load(":/pic/SignalMagic_logo.png");
+//    qDebug() << image.format();
+//    qDebug() << image.size();
+    QPixmap pixmap(":/pic/SignalMagic_logo.png");
+    QSplashScreen splash(pixmap,Qt::WindowStaysOnTopHint);
+    splash.show();
+    a.processEvents();
+//    splash.finish(&w);
     MainWindow w;
     w.show();
     return a.exec();
