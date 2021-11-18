@@ -8,6 +8,8 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class QGraphicsScene;
+class QGraphicsPixmapItem;
+class QPixmap;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -19,5 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    QGraphicsPixmapItem *background;
+    QPixmap *backPixmap;
 };
 #endif // MAINWINDOW_H

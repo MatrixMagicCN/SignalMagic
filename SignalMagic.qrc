@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/pic">
         <file>SignalMagic_logo.png</file>
+        <file>back_SignalMagic_logo.png</file>
     </qresource>
 </RCC>
