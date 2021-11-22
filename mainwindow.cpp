@@ -10,6 +10,7 @@
 #include <QPen>
 #include <QBrush>
 #include <QStyleOptionGraphicsItem>
+#include <QFont>
 //#include <QtDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -32,17 +33,13 @@ MainWindow::MainWindow(QWidget *parent)
 //  scene->addRect(-50, -50, 100, 100);
 
   infoText->setPlainText("HELLO WORLD.\nThis is a example.\n");
-  infoText->setDefaultTextColor(QColor("black"));
+  infoText->setDefaultTextColor(QColor("red"));
+  infoText->setFont(QFont("Source Code Pro",20));
 //  QFont
   infoText->setPos(-900,-400);
   scene->addItem(infoText);
+  targetRect->setPen(QPen(Qt::red,5));
   targetRect->setRect(-50,-50,100,100);
-//  QPen pen(QBrush(QColor("red")),10);
-//  rectPainer->begin();
-//  rectPainer->setPen(QPen(QBrush(QColor("red")),10));
-//  rectPainer->drawRect(-50,-50,100,100);
-//  QStyleOptionGraphicsItem optionGraphicsItem;
-//  targetRect->paint(rectPainer,&optionGraphicsItem);
   scene->addItem(targetRect);
 //  scene->addText("HELLO WORLD.");
 //  qDebug()<< ui->graphicsView->sceneRect();

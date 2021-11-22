@@ -14,7 +14,6 @@ class QGraphicsItem;
 class QPixmap;
 class QGraphicsTextItem;
 class QGraphicsRectItem;
-class QPainter;
 //class QGraphicsTextItem;
 template<typename T> class QList;
 class MainWindow : public QMainWindow
@@ -32,7 +31,6 @@ private:
     QGraphicsPixmapItem *frontEnd;
     QGraphicsTextItem *infoText;
     QGraphicsRectItem *targetRect;
-//    QPainter *rectPainer;
     QPixmap *backPixmap;
     QPixmap *frontPixmap;
     QList<QGraphicsItem *> *itemList;
