@@ -1,16 +1,23 @@
 ﻿#include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include <QGraphicsPixmapItem>
-#include <QList>
-#include <QGraphicsItem>
-#include <QGraphicsTextItem>
-#include <QColor>
-#include <QGraphicsRectItem>
-#include <QPainter>
-#include <QPen>
+
 #include <QBrush>
-#include <QStyleOptionGraphicsItem>
+#include <QColor>
 #include <QFont>
+//#include <QFormLayout>
+#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
+//#include <QGraphicsProxyWidget>
+#include <QGraphicsRectItem>
+#include <QGraphicsTextItem>
+//#include <QGroupBox>
+//#include <QLabel>
+//#include <QLineEdit>
+#include <QList>
+//#include <QPainter>
+#include <QPen>
+//#include <QStyleOptionGraphicsItem>
+
+#include "./ui_mainwindow.h"
 //#include <QtDebug>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -41,16 +48,27 @@ MainWindow::MainWindow(QWidget *parent)
   targetRect->setPen(QPen(Qt::red,5));
   targetRect->setRect(-50,-50,100,100);
   scene->addItem(targetRect);
-//  scene->addText("HELLO WORLD.");
-//  qDebug()<< ui->graphicsView->sceneRect();
-//  *itemList=scene->items();
-//  qDebug()<<itemList->first()->scenePos();
-//  qDebug()<< ui->graphicsView->mapToScene(0,0);
-//  itemList->first()->setPos(ui->graphicsView->mapToScene(-800,-400));
-//  qDebug()<< scene->sceneRect();
-//  qDebug()<< ui->graphicsView->alignment();
-//  qDebug()<< ui->graphicsView->sceneRect();
-//  qDebug()<< ui->graphicsView->size();
+
+  /*QGraphicsProxyWidget                               */
+  //  QGroupBox *groupBox = new QGroupBox("Contact Details");
+  //  QLabel *numberLabel = new QLabel("Telephone number");
+  //  QLineEdit *numberEdit = new QLineEdit;
+
+  //  QFormLayout *layout = new QFormLayout;
+  //  layout->addRow(numberLabel, numberEdit);
+  //  groupBox->setLayout(layout);
+  //  QGraphicsProxyWidget *proxy = scene->addWidget(groupBox);
+  /*                               */
+  //  scene->addText("HELLO WORLD.");
+  //  qDebug()<< ui->graphicsView->sceneRect();
+  //  *itemList=scene->items();
+  //  qDebug()<<itemList->first()->scenePos();
+  //  qDebug()<< ui->graphicsView->mapToScene(0,0);
+  //  itemList->first()->setPos(ui->graphicsView->mapToScene(-800,-400));
+  //  qDebug()<< scene->sceneRect();
+  //  qDebug()<< ui->graphicsView->alignment();
+  //  qDebug()<< ui->graphicsView->sceneRect();
+  //  qDebug()<< ui->graphicsView->size();
   scene->update();
 }
 

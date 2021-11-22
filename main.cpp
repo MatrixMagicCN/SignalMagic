@@ -19,8 +19,8 @@ int main(int argc, char *argv[])
     a.processEvents();
     w=new MainWindow;
     w->show();
-    QTime cutime=QTime::currentTime();
-    while(QTime::currentTime()<cutime.addSecs(2));
+    //    QTime cutime=QTime::currentTime();
+    //    while(QTime::currentTime()<cutime.addSecs(2));
     splash->finish(w);
     delete splash;
     delete pixmap;
