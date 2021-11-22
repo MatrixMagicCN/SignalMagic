@@ -25,10 +25,11 @@
   <property name="font">
    <font>
     <family>Source Code Pro</family>
+    <pointsize>10</pointsize>
    </font>
   </property>
   <property name="windowTitle">
-   <string>SignalMagic</string>
+   <string>Signal Magician</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -53,7 +54,7 @@
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>24</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

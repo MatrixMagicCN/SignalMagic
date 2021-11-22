@@ -5,20 +5,25 @@
 #include <QImage>
 #include <QtDebug>
 #include <QString>
+#include <QTime>
+#include <QPixmap>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-//    QImage image;
-//    qDebug() << image.load(":/pic/SignalMagic_logo.png");
-//    qDebug() << image.format();
-//    qDebug() << image.size();
-    QPixmap pixmap(":/pic/SignalMagic_logo.png");
-    QSplashScreen splash(pixmap,Qt::WindowStaysOnTopHint);
-    splash.show();
+    MainWindow *w;
+    {
+    QPixmap *pixmap=new QPixmap(":/pic/SignalMagic_logo.png");
+    QSplashScreen *splash=new QSplashScreen(*pixmap,Qt::WindowStaysOnTopHint);
+    splash->show();
     a.processEvents();
-//    splash.finish(&w);
-    MainWindow w;
-    w.show();
+    w=new MainWindow;
+    w->show();
+    QTime cutime=QTime::currentTime();
+    while(QTime::currentTime()<cutime.addSecs(2));
+    splash->finish(w);
+    delete splash;
+    delete pixmap;
+    }
     return a.exec();
 }
