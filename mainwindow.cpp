@@ -19,9 +19,9 @@
 #include <QAreaSeries>
 #include <QLineSeries>
 #include <QtCharts>
+#include <QtDebug>
 
 #include "./ui_mainwindow.h"
-//#include <QtDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), scene(new QGraphicsScene),backGround(new QGraphicsPixmapItem),frontEnd(new QGraphicsPixmapItem),infoText(new QGraphicsTextItem),targetRect(new QGraphicsRectItem), backPixmap(new QPixmap),frontPixmap(new QPixmap),itemList(new QList<QGraphicsItem*>)
@@ -48,7 +48,8 @@ MainWindow::MainWindow(QWidget *parent)
 //  QFont
   infoText->setPos(-900,-400);
   scene->addItem(infoText);
-  targetRect->setPen(QPen(Qt::red,5));
+
+  targetRect->setPen(QPen(Qt::red, 5));
   targetRect->setRect(-130, 30, 100, 100);
   scene->addItem(targetRect);
   QGraphicsTextItem *bus = new QGraphicsTextItem;
@@ -90,6 +91,7 @@ MainWindow::MainWindow(QWidget *parent)
   //  qDebug()<< ui->graphicsView->sceneRect();
   //  qDebug()<< ui->graphicsView->size();
   /*Charts */
+
   QLineSeries *series = new QLineSeries();
   series->append(0, 0);
   series->append(1, 1);
@@ -153,3 +155,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event) {
+  qDebug() << "resize.\n";
+  qDebug() << this->width();
+  qDebug() << this->height();
+  qDebug() << ui->graphicsView->width();
+  qDebug() << ui->graphicsView->height();
+}
