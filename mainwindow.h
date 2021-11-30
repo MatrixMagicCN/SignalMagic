@@ -1,9 +1,10 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//#include <QChart>
 #include <QMainWindow>
+//#include <QtCharts>
 #include <QtContainerFwd>
-//#include <QList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,7 +16,8 @@ class QGraphicsItem;
 class QPixmap;
 class QGraphicsTextItem;
 class QGraphicsRectItem;
-// class QGraphicsTextItem;
+class QGraphicsWidget;
+// class QChart;
 // template<typename T> class QList;
 class MainWindow : public QMainWindow
 {
@@ -29,16 +31,18 @@ public:
     void resizeEvent(QResizeEvent *event) override;
 
    private:
-    Ui::MainWindow *ui;
-    QGraphicsScene *scene;
-    QGraphicsPixmapItem *backGround;
-    QGraphicsPixmapItem *frontEnd;
-    QGraphicsTextItem *infoText;
-    QGraphicsRectItem *targetRect;
-    QPixmap *backPixmap;
-    QPixmap *frontPixmap;
-    QList<QGraphicsItem *> *itemList;
+    Ui::MainWindow *ui = nullptr;
+    QGraphicsScene *scene = nullptr;
+    QGraphicsPixmapItem *backGround = nullptr;
+    QGraphicsPixmapItem *frontEnd = nullptr;
+    QGraphicsTextItem *infoText = nullptr;
+    QGraphicsRectItem *targetRect = nullptr;
+    QPixmap *backPixmap = nullptr;
+    QPixmap *frontPixmap = nullptr;
+    QGraphicsWidget *chartLine = nullptr;
+    QGraphicsWidget *chartArea = nullptr;
+    QList<QGraphicsItem *> *itemList = nullptr;
 
-//    QGraphicsTextItem *sceneText;
+    //    QGraphicsTextItem *sceneText;
 };
 #endif // MAINWINDOW_H

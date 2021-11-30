@@ -12,11 +12,13 @@
 //#include <QGroupBox>
 //#include <QLabel>
 //#include <QLineEdit>
-#include <QList>
+//#include <QList>
 //#include <QPainter>
 #include <QPen>
 //#include <QStyleOptionGraphicsItem>
 #include <QAreaSeries>
+//#include <QChart>
+#include <QGraphicsWidget>
 #include <QLineSeries>
 #include <QtCharts>
 #include <QtDebug>
@@ -24,52 +26,64 @@
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), scene(new QGraphicsScene),backGround(new QGraphicsPixmapItem),frontEnd(new QGraphicsPixmapItem),infoText(new QGraphicsTextItem),targetRect(new QGraphicsRectItem), backPixmap(new QPixmap),frontPixmap(new QPixmap),itemList(new QList<QGraphicsItem*>)
-{
+    : QMainWindow(parent),
+      ui(new Ui::MainWindow),
+      scene(new QGraphicsScene),
+      backGround(new QGraphicsPixmapItem),
+      frontEnd(new QGraphicsPixmapItem),
+      infoText(new QGraphicsTextItem),
+      targetRect(new QGraphicsRectItem),
+      backPixmap(new QPixmap),
+      frontPixmap(new QPixmap),
+      //      chartA(new QChart),
+      //      chartB(new QGraphicsWidget),
+      itemList(new QList<QGraphicsItem *>) {
   ui->setupUi(this);
-  scene->setSceneRect(-800,-400,1600,800);
+  //  scene->setSceneRect(-800,-400,1600,800);
   backPixmap->load(":/pic/back_SignalMagic_logo.png");
   frontPixmap->load(":/pic/test.jpg");
+  ui->graphicsView->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+  //  ui->graphicsView->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+  //  qDebug() << ui->graphicsView->mapFromScene(0, 0);
+  //  qDebug() << ui->graphicsView->mapToScene(0, 0);
+  //  qDebug() << "front width:" << frontPixmap->width();
+  //  qDebug() << "front height:" << frontPixmap->height();
+  //  qDebug() << "back width:" << backPixmap->width();
+  //  qDebug() << "back height:" << backPixmap->height();
+
   ui->graphicsView->setScene(scene);
-//  ui->graphicsView->setAlignment(Qt::AlignLeft|Qt::AlignTop);
-  ui->graphicsView->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
   backGround->setPixmap(*backPixmap);
-  backGround->setPos(-800,-400);
   frontEnd->setPixmap(*frontPixmap);
-  frontEnd->setPos(-512,-384);
   scene->addItem(backGround);
-//  scene->addEllipse(-25, -25, 50, 50);
   scene->addItem(frontEnd);
-//  scene->addRect(-50, -50, 100, 100);
 
   infoText->setPlainText("HELLO WORLD.\nThis is a example.\n");
   infoText->setDefaultTextColor(QColor("red"));
-  infoText->setFont(QFont("Source Code Pro",20));
-//  QFont
-  infoText->setPos(-900,-400);
+  infoText->setFont(QFont("Source Code Pro", 15));
+  //  infoText->setPos(0, 0);
   scene->addItem(infoText);
+  /*
+    targetRect->setPen(QPen(Qt::red, 5));
+    //  targetRect->setRect(-130, 30, 100, 100);
+    scene->addItem(targetRect);
+    QGraphicsTextItem *bus = new QGraphicsTextItem;
+    bus->setPlainText("Bus");
+    bus->setDefaultTextColor(QColor("red"));
+    bus->setFont(QFont("Source Code Pro", 20));
+    //  bus->setPos(-110, -20);
+    scene->addItem(bus);
 
-  targetRect->setPen(QPen(Qt::red, 5));
-  targetRect->setRect(-130, 30, 100, 100);
-  scene->addItem(targetRect);
-  QGraphicsTextItem *bus = new QGraphicsTextItem;
-  bus->setPlainText("Bus");
-  bus->setDefaultTextColor(QColor("red"));
-  bus->setFont(QFont("Source Code Pro", 20));
-  bus->setPos(-110, -20);
-  scene->addItem(bus);
-
-  QGraphicsTextItem *car = new QGraphicsTextItem;
-  car->setPlainText("Car");
-  car->setDefaultTextColor(QColor("red"));
-  car->setFont(QFont("Source Code Pro", 20));
-  car->setPos(150, 100);
-  scene->addItem(car);
-  QGraphicsRectItem *carRect = new QGraphicsRectItem;
-  carRect->setPen(QPen(Qt::red, 5));
-  carRect->setRect(120, 150, 150, 150);
-  scene->addItem(carRect);
-
+    QGraphicsTextItem *car = new QGraphicsTextItem;
+    car->setPlainText("Car");
+    car->setDefaultTextColor(QColor("red"));
+    car->setFont(QFont("Source Code Pro", 20));
+    //  car->setPos(150, 100);
+    scene->addItem(car);
+    QGraphicsRectItem *carRect = new QGraphicsRectItem;
+    carRect->setPen(QPen(Qt::red, 5));
+    //  carRect->setRect(120, 150, 150, 150);
+    scene->addItem(carRect);
+  */
   /*QGraphicsProxyWidget                               */
   //  QGroupBox *groupBox = new QGroupBox("Contact Details");
   //  QLabel *numberLabel = new QLabel("Telephone number");
@@ -92,6 +106,9 @@ MainWindow::MainWindow(QWidget *parent)
   //  qDebug()<< ui->graphicsView->size();
   /*Charts */
 
+  QChart *tempChart = new QChart();
+  //  chartLine = static_cast<QChart *>(chartLine);
+  chartLine = tempChart;
   QLineSeries *series = new QLineSeries();
   series->append(0, 0);
   series->append(1, 1);
@@ -102,14 +119,13 @@ MainWindow::MainWindow(QWidget *parent)
   series->append(6, 6);
   *series << QPointF(11, 1) << QPointF(13, 3) << QPointF(17, 6)
           << QPointF(18, 3) << QPointF(20, 2);
-  QChart *chart = new QChart();
-  chart->setTitle("Image Information");
-  chart->addSeries(series);
-  chart->legend()->hide();
-  chart->createDefaultAxes();
-  chart->setPos(500, 000);
-  chart->resize(400, 400);
-  scene->addItem(chart);
+  tempChart->setTitle("Image Information");
+  tempChart->addSeries(series);
+  tempChart->legend()->hide();
+  tempChart->createDefaultAxes();
+  tempChart->setPos(700, 0);
+  tempChart->resize(400, 400);
+  scene->addItem(tempChart);
 
   QLineSeries *series0 = new QLineSeries();
   QLineSeries *series1 = new QLineSeries();
@@ -129,16 +145,17 @@ MainWindow::MainWindow(QWidget *parent)
   gradient.setCoordinateMode(QGradient::ObjectBoundingMode);
   seriesA->setBrush(gradient);
 
-  QChart *chartA = new QChart();
-  chartA->addSeries(seriesA);
-  chartA->setTitle("Image areachart");
-  chartA->createDefaultAxes();
-  chartA->axes(Qt::Horizontal).first()->setRange(0, 20);
-  chartA->axes(Qt::Vertical).first()->setRange(0, 10);
-  chartA->legend()->hide();
-  chartA->setPos(500, -400);
-  chartA->resize(400, 400);
-  scene->addItem(chartA);
+  tempChart = new QChart();
+  chartArea = tempChart;
+  tempChart->addSeries(seriesA);
+  tempChart->setTitle("Image areachart");
+  tempChart->createDefaultAxes();
+  tempChart->axes(Qt::Horizontal).first()->setRange(0, 20);
+  tempChart->axes(Qt::Vertical).first()->setRange(0, 10);
+  tempChart->legend()->hide();
+  tempChart->setPos(700, 400);
+  tempChart->resize(400, 400);
+  scene->addItem(tempChart);
 
   scene->update();
 }
@@ -156,9 +173,42 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
-  qDebug() << "resize.\n";
-  qDebug() << this->width();
-  qDebug() << this->height();
-  qDebug() << ui->graphicsView->width();
-  qDebug() << ui->graphicsView->height();
+  //  qDebug() << "resize.\n";
+  //  qDebug() << this->width();
+  //  qDebug() << this->height();
+  //  qDebug() << event->size().width();
+  //  qDebug() << event->size().height();
+  //  qDebug() << "graphicsView:" << ui->graphicsView->width();
+  //  qDebug() << "graphicsView:" << ui->graphicsView->height();
+  //  qDebug() << "cent:" << ui->centralwidget->width();
+  //  qDebug() << "cent:" << ui->centralwidget->height();
+  //  qDebug() << "scene:" << scene->width();
+  //  qDebug() << "scene:" << scene->height();
+  int width = (ui->graphicsView->width() - backPixmap->width()) / 2;
+  int height = (ui->graphicsView->height() - backPixmap->height()) / 2;
+  //  qDebug() << width;
+  //  qDebug() << height;
+  if (width < 0) width = 0;
+  if (height < 0) height = 0;
+  backGround->setPos(width, height);
+  width = (ui->graphicsView->width() - frontPixmap->width()) / 2;
+  height = (ui->graphicsView->height() - frontPixmap->height()) / 2;
+  //  qDebug() << width;
+  //  qDebug() << height;
+
+  if (width < 0) width = 0;
+  if (height < 0) height = 0;
+  frontEnd->setPos(width, height);
+
+  width = ui->graphicsView->width() - 400;
+  height = 0;
+  if (width < 0) width = 0;
+  //  qDebug() << ui->graphicsView->height() - 400;
+  chartLine->setPos(width, height);
+
+  width = ui->graphicsView->width() - 400;
+  height = 400;
+  if (width < 0) width = 0;
+  //  qDebug() << ui->graphicsView->height() - 400;
+  chartArea->setPos(width, height);
 }
