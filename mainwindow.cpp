@@ -212,3 +212,11 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
   //  qDebug() << ui->graphicsView->height() - 400;
   chartArea->setPos(width, height);
 }
+
+void MainWindow::mousePressEvent(QMouseEvent *event) {
+  //  qDebug() << "Mouse Press Event.";
+  //  qDebug() << event->pos();
+  //  qDebug() << event->x();
+  //  qDebug() << event->y();
+  //  qDebug() << event->screenPos();
+}
